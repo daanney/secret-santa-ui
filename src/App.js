@@ -15,8 +15,8 @@ import { Alert, CardColumns, Col, Container, Row } from "react-bootstrap"
 
 class App extends React.Component {
 
-  apiBase = 'http://localhost:5000/api/users/'
-  //apiBase = 'http://192.168.100.24:5000/api/users'
+  //apiBase = 'http://localhost:5000/api/users/'
+  apiBase = 'http://secret-santa.eu-central-1.elasticbeanstalk.com/api/users/'
   getApiUrl =(endpoint)=> {
     const { user } = this.state
     const apiToken = user ? `?token=${user.token}` : ''
