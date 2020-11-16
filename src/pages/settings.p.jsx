@@ -1,9 +1,11 @@
+/*
 import { useState } from "react"
 import { Button, Card, Form } from "react-bootstrap"
 
 import CustomInput from '../components/custom_input.c'
-
+*/
 const SettingsPage =({ onChangePassword, setMessage })=> {
+/*
 	const [ creds, setCreds ] = useState({ password: '' })
 	const { password } = creds
 
@@ -25,7 +27,6 @@ const SettingsPage =({ onChangePassword, setMessage })=> {
 
 		onChangePassword(password)
 	}
-
 	return <Card className='card-transparent'>
 		<Card.Header>SettingsPage</Card.Header>
 		<Card.Body>
@@ -37,6 +38,8 @@ const SettingsPage =({ onChangePassword, setMessage })=> {
 			</Form>
 		</Card.Body>
 	</Card>
+*/
+	return <></>
 }
 
 export default SettingsPage

@@ -16,7 +16,7 @@ import { Alert, CardColumns, Col, Container, Row } from "react-bootstrap"
 class App extends React.Component {
 
   //apiBase = 'http://localhost:5000/api/users/'
-  apiBase = 'https://secret-santa.eu-central-1.elasticbeanstalk.com/api/users/'
+  apiBase = 'http://secret-santa.eu-central-1.elasticbeanstalk.com/api/users/'
   getApiUrl =(endpoint)=> {
     const { user } = this.state
     const apiToken = user ? `?token=${user.token}` : ''
@@ -28,6 +28,7 @@ class App extends React.Component {
     allUsers: [],
     connected: false,
     connectionError: '',
+    connectionErrorCount: 0,
     message: { text: null, type: 'success'}
   }
 
@@ -46,10 +47,16 @@ class App extends React.Component {
 
   handlePing =(check)=> {
     const connected = 'pong' === check
-    const connectionError = connected ? '' : 'Something is wrong. Check with Dani.'
+    const _connectionErrorCount = this.state.connectionErrorCount
+    let connectionErrorCount = 0
+    let connectionError = ''
 
-    this.setState({ ...this.state, connected, connectionError })
-    setTimeout(this.pingBackend, connected ? 10000 : 3000)
+    if(!connected) {
+      connectionError = 'Something is wrong. Check with Dani.'
+      connectionErrorCount = this.state.connectionErrorCount + 1
+    }
+    this.setState({ ...this.state, connected, connectionError, connectionErrorCount })
+    if(_connectionErrorCount < 5) setTimeout(this.pingBackend, connected ? 10000 : 3000)
   }
 
   checkUserLoggedIn = async () => {
